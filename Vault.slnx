@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="Vault.App.Wpf/Vault.App.Wpf.csproj" />
+  <Project Path="Vault.Core/Vault.Core.csproj" />
+  <Project Path="Vault.Infrastructure/Vault.Infrastructure.csproj" />
+  <Project Path="Vault.Security/Vault.Security.csproj" />
+  <Project Path="Vault.Tests/Vault.Tests.csproj" />
+</Solution>

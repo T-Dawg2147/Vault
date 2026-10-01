@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+<ItemGroup><ProjectReference Include="..\Vault.Core\Vault.Core.csproj" /><ProjectReference Include="..\Vault.Security\Vault.Security.csproj" /></ItemGroup>
+
+<ItemGroup>
+  <PackageReference Include="ClosedXML" Version="0.102.3" />
+  <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.0" />
+</ItemGroup>
+</Project>

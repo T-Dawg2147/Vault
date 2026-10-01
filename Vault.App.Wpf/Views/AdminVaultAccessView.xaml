@@ -1,0 +1,48 @@
+<UserControl x:Class="Vault.App.Wpf.Views.AdminVaultAccessView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Vault access (admin)" FontSize="22" FontWeight="Bold" Margin="0,0,0,12"/>
+
+        <DockPanel Grid.Row="1" Margin="0,0,0,8">
+            <TextBlock Text="Vault:" VerticalAlignment="Center" Margin="0,0,4,0"/>
+            <ComboBox ItemsSource="{Binding Vaults}" SelectedItem="{Binding SelectedVault}"
+                      DisplayMemberPath="Name" Width="200" DockPanel.Dock="Left"/>
+            <TextBlock Text="  User:" VerticalAlignment="Center" Margin="8,0,4,0"/>
+            <ComboBox ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}"
+                      DisplayMemberPath="Username" Width="160" DockPanel.Dock="Left"/>
+            <TextBlock Text="  Level:" VerticalAlignment="Center" Margin="8,0,4,0"/>
+            <ComboBox ItemsSource="{Binding PermissionLevels}" SelectedItem="{Binding SelectedPermission}"
+                      Width="100" DockPanel.Dock="Left"/>
+            <Button Content="Grant / update" Style="{StaticResource PrimaryButton}" Command="{Binding GrantCommand}"/>
+        </DockPanel>
+
+        <DataGrid Grid.Row="2" ItemsSource="{Binding AccessList}" AutoGenerateColumns="False"
+                  IsReadOnly="True" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="User ID" Binding="{Binding UserId}" Width="80"/>
+                <DataGridTextColumn Header="Permission" Binding="{Binding Permission}" Width="120"/>
+                <DataGridTextColumn Header="Granted by" Binding="{Binding GrantedByUserId}" Width="100"/>
+                <DataGridTextColumn Header="Granted at" Binding="{Binding GrantedAt, StringFormat=g}" Width="160"/>
+                <DataGridTemplateColumn Header="" Width="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Revoke"
+                                    Command="{Binding DataContext.RevokeCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                    CommandParameter="{Binding}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <TextBlock Grid.Row="3" Text="{Binding ErrorMessage}" Foreground="DarkRed" TextWrapping="Wrap" Margin="0,8,0,0"/>
+    </Grid>
+</UserControl>

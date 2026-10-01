@@ -1,0 +1,34 @@
+<UserControl x:Class="Vault.App.Wpf.Views.AuditLogView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Audit log (admin)" FontSize="22" FontWeight="Bold" Margin="0,0,0,12"/>
+
+        <DockPanel Grid.Row="1" Margin="0,0,0,8">
+            <TextBlock Text="Filter:" VerticalAlignment="Center" Margin="0,0,4,0"/>
+            <TextBox Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" MinWidth="240" DockPanel.Dock="Left"/>
+            <Button Content="Refresh" Style="{StaticResource PrimaryButton}" Command="{Binding RefreshCommand}"/>
+        </DockPanel>
+
+        <DataGrid Grid.Row="2" ItemsSource="{Binding Entries}" AutoGenerateColumns="False"
+                  IsReadOnly="True" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Time (UTC)" Binding="{Binding Timestamp, StringFormat=g}" Width="150"/>
+                <DataGridTextColumn Header="User" Binding="{Binding UserId}" Width="60"/>
+                <DataGridTextColumn Header="Action" Binding="{Binding Action}" Width="180"/>
+                <DataGridTextColumn Header="Target" Binding="{Binding TargetType}" Width="100"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding TargetId}" Width="60"/>
+                <DataGridTextColumn Header="Details" Binding="{Binding Details}" Width="2*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <TextBlock Grid.Row="3" Text="{Binding ErrorMessage}" Foreground="DarkRed" TextWrapping="Wrap" Margin="0,8,0,0"/>
+    </Grid>
+</UserControl>
