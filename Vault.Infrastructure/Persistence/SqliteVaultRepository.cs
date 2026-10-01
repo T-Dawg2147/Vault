@@ -53,6 +53,8 @@ public sealed class SqliteVaultRepository : IRepository
                 UpdatedAt TEXT NOT NULL
             );
 
+            CREATE UNIQUE INDEX IF NOT EXISTS UX_Users_DomainUsername ON Users (Domain COLLATE NOCASE, Username COLLATE NOCASE);
+            
             CREATE TABLE IF NOT EXISTS Vaults (
                 Id INTEGER PRIMARY KEY AUTOINCREMENT,
                 Name TEXT NOT NULL UNIQUE,
@@ -114,6 +116,18 @@ public sealed class SqliteVaultRepository : IRepository
         command.CommandText = "SELECT * FROM Users WHERE WindowsSid = $sid";
         command.Parameters.AddWithValue("$sid", windowsSid);
         using var reader = command.ExecuteReader();
+        return reader.Read() ? MapUser(reader) : null;
+    }
+
+    public User? FindUserByDomainUsername(string domain, string username)
+    {
+        using var conn = OpenConnection();
+        using var cmd = conn.CreateCommand();
+        cmd.CommandText =
+            "SELECT * FROM Users WHERE Domain = $domain COLLATE NOCASE AND Username = $username COLLATE NOCASE";
+        cmd.Parameters.AddWithValue("$domain", domain);
+        cmd.Parameters.AddWithValue("$username", username);
+        using var reader = cmd.ExecuteReader();
         return reader.Read() ? MapUser(reader) : null;
     }
 

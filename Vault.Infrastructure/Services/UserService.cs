@@ -31,17 +31,26 @@ public sealed class UserService : IUserService
     public User? GetCurrentUser()
     {
         var identity = _identityService.GetCurrentIdentity();
-        var user = _repository.FindUserBySid(identity.Sid);
+        var user = _repository.FindUserByDomainUsername(identity.Domain, identity.Username);
 
         if (user is null || !user.IsActive)
             return null;
 
-        // Keep directory-sourced fields fresh; never persist secrets here.
-        if (!string.Equals(user.Username, identity.Username, StringComparison.OrdinalIgnoreCase)
-            || !string.Equals(user.Domain, identity.Domain, StringComparison.OrdinalIgnoreCase))
+        if (!string.Equals(user.WindowsSid, identity.Sid, StringComparison.Ordinal))
         {
-            user.Username = identity.Username;
-            user.Domain = identity.Domain;
+            // Same Domain\Username, but a different SID than last time we saw them.
+            // This can happen if the account was deleted and recreated — treat it as
+            // suspicious rather than silently trusting it.
+            _audit.Log(AuditAction.IdentityDriftDetected, user.Id, "User", user.Id.ToString(),
+                $"SID changed for '{user.Domain}\\{user.Username}'. Stored={user.WindowsSid}, Current={identity.Sid}.");
+
+            // Fail closed: require an admin to confirm/re-link before granting access.
+            return null;
+        }
+
+        if (!string.Equals(user.DisplayName, identity.DisplayName, StringComparison.Ordinal))
+        {
+            user.DisplayName = identity.DisplayName;
             _repository.UpdateUser(user);
         }
 
@@ -110,5 +119,20 @@ public sealed class UserService : IUserService
         _audit.Log(isActive ? AuditAction.UserUpdated : AuditAction.UserDeactivated,
             actor.Id, "User", target.Id.ToString(),
             $"User '{target.Username}' {(isActive ? "reactivated" : "deactivated")}.");
+    }
+
+    public void RelinkSid(User actor, int targetUserId, string newWindowsSid)
+    {
+        _authorization.Require(_authorization.CanManageUsers(actor), "RelinkSid");
+
+        var user = _repository.FindUserById(targetUserId)
+            ?? throw new InvalidOperationException("User not found.");
+
+        var oldSid = user.WindowsSid;
+        user.WindowsSid = InputValidator.RequiredSid(newWindowsSid);
+        _repository.UpdateUser(user);
+
+        _audit.Log(AuditAction.SidRelinked, actor.Id, "User", user.Id.ToString(),
+            $"SID for '{user.Domain}\\{user.Username}' changed from {oldSid} to {user.WindowsSid} by admin.");
     }
 }

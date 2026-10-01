@@ -77,6 +77,8 @@ public interface IUserService
 
     /// <summary>Admin-only.</summary>
     void SetActive(User actor, int targetUserId, bool isActive);
+
+    void RelinkSid(User actor, int targetUserId, string newWindowsSid);
 }
 
 public interface IVaultService

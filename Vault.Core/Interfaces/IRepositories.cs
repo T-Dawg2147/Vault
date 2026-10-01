@@ -10,6 +10,7 @@ public interface IRepository
 {
     // Users
     User? FindUserBySid(string windowsSid);
+    User? FindUserByDomainUsername(string domain, string username);
     User? FindUserById(int id);
     IReadOnlyList<User> GetAllUsers();
     User InsertUser(User user);
