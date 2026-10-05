@@ -164,6 +164,37 @@ public sealed class UserService : IUserService
             $"User '{target.Username}' {(isActive ? "reactivated" : "deactivated")}.");
     }
 
+    public void Update(User actor, int targetUserId, string domain, string username, string displayName, UserRole role, bool isActive)
+    {
+        _authorization.Require(_authorization.CanManageUsers(actor), "UpdateUser");
+
+        var target = _repository.FindUserById(targetUserId)
+            ?? throw new ValidationException("User not found.");
+
+        if (target.Id == actor.Id && (role != UserRole.Admin || !isActive))
+            throw new ValidationException("You cannot remove your own admin role or deactivate your own account.");
+
+        var newDomain = InputValidator.OptionalText(domain, "Domain", InputValidator.MaxNameLength) ?? string.Empty;
+        var newUsername = InputValidator.RequiredAccountName(username, "Username");
+        var newDisplayName = InputValidator.OptionalText(displayName, "Display name", InputValidator.MaxNameLength) ?? string.Empty;
+
+        var existing = _repository.FindUserByDomainUsername(newDomain, newUsername);
+        if (existing is not null && existing.Id != target.Id)
+            throw new ValidationException("Another user already has that domain and username.");
+
+        var before = $"'{target.Domain}\\{target.Username}' ({target.DisplayName}), {target.Role}, {(target.IsActive ? "active" : "inactive")}";
+
+        target.Domain = newDomain;
+        target.Username = newUsername;
+        target.DisplayName = newDisplayName;
+        target.Role = role;
+        target.IsActive = isActive;
+        _repository.UpdateUser(target);
+
+        _audit.Log(AuditAction.UserUpdated, actor.Id, "User", target.Id.ToString(),
+            $"User updated from {before} to '{target.Domain}\\{target.Username}' ({target.DisplayName}), {target.Role}, {(target.IsActive ? "active" : "inactive")}.");
+    }
+
     public void RelinkSid(User actor, int targetUserId, string newWindowsSid)
     {
         _authorization.Require(_authorization.CanManageUsers(actor), "RelinkSid");

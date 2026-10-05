@@ -1,0 +1,15 @@
+/home/runner/work/Vault/Vault/Vault.Security/bin/Debug/net8.0/Vault.Security.deps.json
+/home/runner/work/Vault/Vault/Vault.Security/bin/Debug/net8.0/Vault.Security.dll
+/home/runner/work/Vault/Vault/Vault.Security/bin/Debug/net8.0/Vault.Security.pdb
+/home/runner/work/Vault/Vault/Vault.Security/bin/Debug/net8.0/Vault.Core.dll
+/home/runner/work/Vault/Vault/Vault.Security/bin/Debug/net8.0/Vault.Core.pdb
+/home/runner/work/Vault/Vault/Vault.Security/obj/Debug/net8.0/Vault.Security.csproj.AssemblyReference.cache
+/home/runner/work/Vault/Vault/Vault.Security/obj/Debug/net8.0/Vault.Security.GeneratedMSBuildEditorConfig.editorconfig
+/home/runner/work/Vault/Vault/Vault.Security/obj/Debug/net8.0/Vault.Security.AssemblyInfoInputs.cache
+/home/runner/work/Vault/Vault/Vault.Security/obj/Debug/net8.0/Vault.Security.AssemblyInfo.cs
+/home/runner/work/Vault/Vault/Vault.Security/obj/Debug/net8.0/Vault.Security.csproj.CoreCompileInputs.cache
+/home/runner/work/Vault/Vault/Vault.Security/obj/Debug/net8.0/Vault.Se.EADB038B.Up2Date
+/home/runner/work/Vault/Vault/Vault.Security/obj/Debug/net8.0/Vault.Security.dll
+/home/runner/work/Vault/Vault/Vault.Security/obj/Debug/net8.0/refint/Vault.Security.dll
+/home/runner/work/Vault/Vault/Vault.Security/obj/Debug/net8.0/Vault.Security.pdb
+/home/runner/work/Vault/Vault/Vault.Security/obj/Debug/net8.0/ref/Vault.Security.dll

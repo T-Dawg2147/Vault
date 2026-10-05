@@ -8,6 +8,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <!-- Create User Section -->
@@ -57,6 +58,8 @@
                           AutoGenerateColumns="False"
                           CanUserAddRows="False"
                           IsReadOnly="True"
+                          SelectionMode="Single"
+                          SelectedItem="{Binding SelectedUser, Mode=TwoWay}"
                           HeadersVisibility="Column"
                           GridLinesVisibility="Horizontal">
                     <DataGrid.Columns>
@@ -69,6 +72,33 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </DockPanel>
+        </Border>
+
+        <!-- Edit User Section -->
+        <Border Grid.Row="2" Margin="0,16,0,0" Padding="16" CornerRadius="8" BorderThickness="1" BorderBrush="#DDD" Background="#FAFAFA">
+            <StackPanel>
+                <TextBlock Text="Edit Selected User" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,12" />
+                <UniformGrid Columns="3" Margin="0,0,0,12">
+                    <StackPanel Margin="0,0,12,12">
+                        <TextBlock Text="Domain" Margin="0,0,0,4" />
+                        <TextBox Text="{Binding EditDomain, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+                    <StackPanel Margin="0,0,12,12">
+                        <TextBlock Text="Username" Margin="0,0,0,4" />
+                        <TextBox Text="{Binding EditUsername, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+                    <StackPanel Margin="0,0,0,12">
+                        <TextBlock Text="Display Name" Margin="0,0,0,4" />
+                        <TextBox Text="{Binding EditDisplayName, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+                    <StackPanel Margin="0,0,12,0">
+                        <TextBlock Text="Role" Margin="0,0,0,4" />
+                        <ComboBox SelectedItem="{Binding EditRole}" ItemsSource="{Binding Roles}" />
+                    </StackPanel>
+                    <CheckBox Content="Active" IsChecked="{Binding EditIsActive}" VerticalAlignment="Bottom" Margin="0,0,12,0" />
+                </UniformGrid>
+                <Button Content="Save Changes" Width="120" HorizontalAlignment="Left" Command="{Binding SaveUserCommand}" />
+            </StackPanel>
         </Border>
     </Grid>
 </UserControl>
