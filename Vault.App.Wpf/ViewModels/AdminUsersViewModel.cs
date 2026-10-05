@@ -20,7 +20,6 @@ public partial class AdminUsersViewModel : ViewModelBase
 
     [ObservableProperty] private ObservableCollection<User> _users = new();
     [ObservableProperty] private User? _selectedUser;
-    [ObservableProperty] private string _newSid = string.Empty;
     [ObservableProperty] private string _newDomain = string.Empty;
     [ObservableProperty] private string _newUsername = string.Empty;
     [ObservableProperty] private string _newDisplayName = string.Empty;

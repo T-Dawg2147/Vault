@@ -43,7 +43,7 @@ public sealed class SqliteVaultRepository : IRepository
 
             CREATE TABLE IF NOT EXISTS Users (
                 Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                WindowsSid TEXT NOT NULL UNIQUE,
+                WindowsSid TEXT NOT NULL,
                 Domain TEXT NOT NULL DEFAULT '',
                 Username TEXT NOT NULL,
                 DisplayName TEXT NOT NULL DEFAULT '',
@@ -53,6 +53,7 @@ public sealed class SqliteVaultRepository : IRepository
                 UpdatedAt TEXT NOT NULL
             );
 
+            CREATE UNIQUE INDEX IF NOT EXISTS UX_Users_Sid ON Users (WindowsSid) WHERE WindowsSid <> '';
             CREATE UNIQUE INDEX IF NOT EXISTS UX_Users_DomainUsername ON Users (Domain COLLATE NOCASE, Username COLLATE NOCASE);
             
             CREATE TABLE IF NOT EXISTS Vaults (
@@ -187,10 +188,11 @@ public sealed class SqliteVaultRepository : IRepository
         using var command = connection.CreateCommand();
         command.CommandText = @"
             UPDATE Users
-            SET Domain = $domain, Username = $username, DisplayName = $displayName,
+            SET WindowsSid = $sid, Domain = $domain, Username = $username, DisplayName = $displayName,
                 Role = $role, IsActive = $isActive, UpdatedAt = $updatedAt
             WHERE Id = $id";
         command.Parameters.AddWithValue("$id", user.Id);
+        command.Parameters.AddWithValue("$sid", user.WindowsSid);
         command.Parameters.AddWithValue("$domain", user.Domain);
         command.Parameters.AddWithValue("$username", user.Username);
         command.Parameters.AddWithValue("$displayName", user.DisplayName);

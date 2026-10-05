@@ -28,5 +28,7 @@ public enum AuditAction
     ImportFailed,
     ExportPerformed,
     IdentityDriftDetected,
-    SidRelinked
+    SidRelinked,
+    UserAutoRegistered,
+    SidCaptured
 }

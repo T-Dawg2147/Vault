@@ -33,10 +33,21 @@ public sealed class UserService : IUserService
         var identity = _identityService.GetCurrentIdentity();
         var user = _repository.FindUserByDomainUsername(identity.Domain, identity.Username);
 
+        if (user is null)
+            user = AutoRegister(identity);
+
         if (user is null || !user.IsActive)
             return null;
 
-        if (!string.Equals(user.WindowsSid, identity.Sid, StringComparison.Ordinal))
+        if (string.IsNullOrEmpty(user.WindowsSid))
+        {
+            // Admin pre-created the user without a SID: capture it on first successful login.
+            user.WindowsSid = identity.Sid;
+            _repository.UpdateUser(user);
+            _audit.Log(AuditAction.SidCaptured, user.Id, "User", user.Id.ToString(),
+                $"SID captured for '{user.Domain}\\{user.Username}' on first login.");
+        }
+        else if (!string.Equals(user.WindowsSid, identity.Sid, StringComparison.Ordinal))
         {
             // Same Domain\Username, but a different SID than last time we saw them.
             // This can happen if the account was deleted and recreated — treat it as
@@ -55,6 +66,38 @@ public sealed class UserService : IUserService
         }
 
         return user;
+    }
+
+    /// <summary>
+    /// Self-registers a first-time Windows user as an active Viewer with no vault access.
+    /// Authorization is deny-by-default, so the new user cannot see any credentials until
+    /// an admin grants vault access.
+    /// </summary>
+    private User? AutoRegister(WindowsIdentityInfo identity)
+    {
+        if (string.IsNullOrWhiteSpace(identity.Username) || string.IsNullOrWhiteSpace(identity.Sid))
+            return null;
+
+        try
+        {
+            var created = _repository.InsertUser(new User
+            {
+                WindowsSid = identity.Sid,
+                Domain = identity.Domain ?? string.Empty,
+                Username = identity.Username,
+                DisplayName = identity.DisplayName ?? string.Empty,
+                Role = UserRole.Viewer,
+                IsActive = true
+            });
+            _audit.Log(AuditAction.UserAutoRegistered, created.Id, "User", created.Id.ToString(),
+                $"User '{created.Domain}\\{created.Username}' automatically registered as {created.Role} with no vault access.");
+            return created;
+        }
+        catch (Microsoft.Data.Sqlite.SqliteException)
+        {
+            // Lost a race with another instance registering the same user; re-read it.
+            return _repository.FindUserByDomainUsername(identity.Domain ?? string.Empty, identity.Username);
+        }
     }
 
     public User? GetById(int id) => _repository.FindUserById(id);
