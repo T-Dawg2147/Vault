@@ -48,8 +48,8 @@ public partial class AdminUsersViewModel : ViewModelBase
     {
         try
         {
-            _userService.Create(_session.CurrentUser, NewSid, NewDomain, NewUsername, NewDisplayName, NewRole);
-            NewSid = NewDomain = NewUsername = NewDisplayName = string.Empty;
+            _userService.Create(_session.CurrentUser, NewDomain, NewUsername, NewDisplayName, NewRole);
+            NewDomain = NewUsername = NewDisplayName = string.Empty;
             NewRole = UserRole.Viewer;
             Refresh();
         }

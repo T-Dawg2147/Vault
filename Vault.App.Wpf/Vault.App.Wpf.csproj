@@ -7,6 +7,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <AssemblyName>Vault</AssemblyName>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
 
 <ItemGroup><ProjectReference Include="..\Vault.Core\Vault.Core.csproj" /><ProjectReference Include="..\Vault.Security\Vault.Security.csproj" /><ProjectReference Include="..\Vault.Infrastructure\Vault.Infrastructure.csproj" /></ItemGroup>

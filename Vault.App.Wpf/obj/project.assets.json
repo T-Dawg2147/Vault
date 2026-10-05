@@ -5340,7 +5340,7 @@
     "version": "1.0.0",
     "restore": {
       "projectUniqueName": "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.App.Wpf\\Vault.App.Wpf.csproj",
-      "projectName": "Vault.App.Wpf",
+      "projectName": "Vault",
       "projectPath": "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.App.Wpf\\Vault.App.Wpf.csproj",
       "packagesPath": "C:\\Users\\harryc\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.App.Wpf\\obj\\",

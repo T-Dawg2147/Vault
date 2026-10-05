@@ -65,13 +65,13 @@ public sealed class UserService : IUserService
         return _repository.GetAllUsers();
     }
 
-    public User Create(User actor, string windowsSid, string domain, string username, string displayName, UserRole role)
+    public User Create(User actor, string domain, string username, string displayName, UserRole role)
     {
         _authorization.Require(_authorization.CanManageUsers(actor), "CreateUser");
 
         var user = new User
         {
-            WindowsSid = InputValidator.RequiredSid(windowsSid),
+            WindowsSid = string.Empty,
             Domain = InputValidator.OptionalText(domain, "Domain", InputValidator.MaxNameLength) ?? string.Empty,
             Username = InputValidator.RequiredAccountName(username, "Username"),
             DisplayName = InputValidator.OptionalText(displayName, "Display name", InputValidator.MaxNameLength) ?? string.Empty,
@@ -81,7 +81,7 @@ public sealed class UserService : IUserService
 
         var created = _repository.InsertUser(user);
         _audit.Log(AuditAction.UserCreated, actor.Id, "User", created.Id.ToString(),
-            $"User '{created.Username}' created with role {created.Role}.");
+            $"User '{created.Domain}\\{created.Username}' created with role {created.Role}.");
         return created;
     }
 

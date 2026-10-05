@@ -87,7 +87,7 @@ public partial class App : Application
     private static ServiceProvider ConfigureServices()
     {
         var dataDirectory = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+            AppDomain.CurrentDomain.BaseDirectory,
             "Vault");
         var databasePath = Path.Combine(dataDirectory, "vault.db");
         var keyFilePath = Path.Combine(dataDirectory, "master.key");

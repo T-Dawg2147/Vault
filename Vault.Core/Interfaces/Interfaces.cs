@@ -70,7 +70,7 @@ public interface IUserService
     IReadOnlyList<User> GetAll(User actor);
 
     /// <summary>Admin-only. Creates a user record for a Windows identity.</summary>
-    User Create(User actor, string windowsSid, string domain, string username, string displayName, UserRole role);
+    User Create(User actor, string domain, string username, string displayName, UserRole role);
 
     /// <summary>Admin-only.</summary>
     void ChangeRole(User actor, int targetUserId, UserRole newRole);
