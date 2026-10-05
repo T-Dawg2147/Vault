@@ -1,12 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "f8fS8vaTAD0=",
+  "dgSpecHash": "ZPGo17zvQcE=",
   "success": true,
-  "projectFilePath": "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.Core\\Vault.Core.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\harryc\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.28\\microsoft.netcore.app.ref.8.0.28.nupkg.sha512",
-    "C:\\Users\\harryc\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.28\\microsoft.windowsdesktop.app.ref.8.0.28.nupkg.sha512",
-    "C:\\Users\\harryc\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.28\\microsoft.aspnetcore.app.ref.8.0.28.nupkg.sha512"
-  ],
+  "projectFilePath": "/home/runner/work/Vault/Vault/Vault.Core/Vault.Core.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

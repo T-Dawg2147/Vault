@@ -24,6 +24,11 @@ public partial class AdminUsersViewModel : ViewModelBase
     [ObservableProperty] private string _newUsername = string.Empty;
     [ObservableProperty] private string _newDisplayName = string.Empty;
     [ObservableProperty] private UserRole _newRole = UserRole.Viewer;
+    [ObservableProperty] private string _editDomain = string.Empty;
+    [ObservableProperty] private string _editUsername = string.Empty;
+    [ObservableProperty] private string _editDisplayName = string.Empty;
+    [ObservableProperty] private UserRole _editRole = UserRole.Viewer;
+    [ObservableProperty] private bool _editIsActive = true;
     [ObservableProperty] private string? _errorMessage;
 
     public IReadOnlyList<UserRole> Roles { get; } = Enum.GetValues<UserRole>();
@@ -34,12 +39,24 @@ public partial class AdminUsersViewModel : ViewModelBase
         _session = session;
     }
 
+    partial void OnSelectedUserChanged(User? value)
+    {
+        if (value is null) return;
+        EditDomain = value.Domain;
+        EditUsername = value.Username;
+        EditDisplayName = value.DisplayName;
+        EditRole = value.Role;
+        EditIsActive = value.IsActive;
+    }
+
     public override void OnNavigatedTo() => Refresh();
 
     private void Refresh()
     {
         ErrorMessage = null;
+        var selectedId = SelectedUser?.Id;
         Users = new ObservableCollection<User>(_userService.GetAll(_session.CurrentUser));
+        SelectedUser = selectedId is null ? null : Users.FirstOrDefault(u => u.Id == selectedId);
     }
 
     [RelayCommand]
@@ -50,6 +67,27 @@ public partial class AdminUsersViewModel : ViewModelBase
             _userService.Create(_session.CurrentUser, NewDomain, NewUsername, NewDisplayName, NewRole);
             NewDomain = NewUsername = NewDisplayName = string.Empty;
             NewRole = UserRole.Viewer;
+            Refresh();
+        }
+        catch (Exception ex) when (ex is VaultAccessDeniedException or ValidationException)
+        {
+            ErrorMessage = ex.Message;
+        }
+    }
+
+    [RelayCommand]
+    private void SaveUser()
+    {
+        if (SelectedUser is null)
+        {
+            ErrorMessage = "Select a user first.";
+            return;
+        }
+
+        try
+        {
+            _userService.Update(_session.CurrentUser, SelectedUser.Id,
+                EditDomain, EditUsername, EditDisplayName, EditRole, EditIsActive);
             Refresh();
         }
         catch (Exception ex) when (ex is VaultAccessDeniedException or ValidationException)

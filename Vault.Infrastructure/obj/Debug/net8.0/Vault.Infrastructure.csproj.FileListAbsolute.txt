@@ -1,0 +1,17 @@
+/home/runner/work/Vault/Vault/Vault.Infrastructure/bin/Debug/net8.0/Vault.Infrastructure.deps.json
+/home/runner/work/Vault/Vault/Vault.Infrastructure/bin/Debug/net8.0/Vault.Infrastructure.dll
+/home/runner/work/Vault/Vault/Vault.Infrastructure/bin/Debug/net8.0/Vault.Infrastructure.pdb
+/home/runner/work/Vault/Vault/Vault.Infrastructure/bin/Debug/net8.0/Vault.Core.dll
+/home/runner/work/Vault/Vault/Vault.Infrastructure/bin/Debug/net8.0/Vault.Security.dll
+/home/runner/work/Vault/Vault/Vault.Infrastructure/bin/Debug/net8.0/Vault.Core.pdb
+/home/runner/work/Vault/Vault/Vault.Infrastructure/bin/Debug/net8.0/Vault.Security.pdb
+/home/runner/work/Vault/Vault/Vault.Infrastructure/obj/Debug/net8.0/Vault.Infrastructure.csproj.AssemblyReference.cache
+/home/runner/work/Vault/Vault/Vault.Infrastructure/obj/Debug/net8.0/Vault.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/home/runner/work/Vault/Vault/Vault.Infrastructure/obj/Debug/net8.0/Vault.Infrastructure.AssemblyInfoInputs.cache
+/home/runner/work/Vault/Vault/Vault.Infrastructure/obj/Debug/net8.0/Vault.Infrastructure.AssemblyInfo.cs
+/home/runner/work/Vault/Vault/Vault.Infrastructure/obj/Debug/net8.0/Vault.Infrastructure.csproj.CoreCompileInputs.cache
+/home/runner/work/Vault/Vault/Vault.Infrastructure/obj/Debug/net8.0/Vault.In.1462FD26.Up2Date
+/home/runner/work/Vault/Vault/Vault.Infrastructure/obj/Debug/net8.0/Vault.Infrastructure.dll
+/home/runner/work/Vault/Vault/Vault.Infrastructure/obj/Debug/net8.0/refint/Vault.Infrastructure.dll
+/home/runner/work/Vault/Vault/Vault.Infrastructure/obj/Debug/net8.0/Vault.Infrastructure.pdb
+/home/runner/work/Vault/Vault/Vault.Infrastructure/obj/Debug/net8.0/ref/Vault.Infrastructure.dll

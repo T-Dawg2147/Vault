@@ -78,6 +78,9 @@ public interface IUserService
     /// <summary>Admin-only.</summary>
     void SetActive(User actor, int targetUserId, bool isActive);
 
+    /// <summary>Admin-only. Updates a user's domain, username, display name, role and active state.</summary>
+    void Update(User actor, int targetUserId, string domain, string username, string displayName, UserRole role, bool isActive);
+
     void RelinkSid(User actor, int targetUserId, string newWindowsSid);
 }
 

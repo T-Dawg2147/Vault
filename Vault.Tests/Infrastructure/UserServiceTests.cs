@@ -107,4 +107,40 @@ public class UserServiceTests
         f.Users.Create(f.Admin, "CORP", "bob", "Bob", UserRole.Viewer);
         f.Users.Create(f.Admin, "CORP", "carol", "Carol", UserRole.Viewer);
     }
+
+    [Fact]
+    public void Update_ChangesAllFieldsAndAudits()
+    {
+        var f = new Fixture();
+        var target = f.Repository.InsertUser(TestHelpers.MakeUser(0, UserRole.Viewer));
+
+        f.Users.Update(f.Admin, target.Id, "NEWDOM", "newname", "New Name", UserRole.Editor, false);
+
+        var saved = f.Repository.FindUserById(target.Id)!;
+        Assert.Equal("NEWDOM", saved.Domain);
+        Assert.Equal("newname", saved.Username);
+        Assert.Equal("New Name", saved.DisplayName);
+        Assert.Equal(UserRole.Editor, saved.Role);
+        Assert.False(saved.IsActive);
+        Assert.True(f.Logged(AuditAction.UserUpdated));
+    }
+
+    [Fact]
+    public void Update_ByNonAdmin_IsDenied()
+    {
+        var f = new Fixture();
+        var viewer = f.Repository.InsertUser(TestHelpers.MakeUser(0, UserRole.Viewer));
+
+        Assert.ThrowsAny<Exception>(() =>
+            f.Users.Update(viewer, viewer.Id, "D", "x", "X", UserRole.Admin, true));
+    }
+
+    [Fact]
+    public void Update_AdminCannotDemoteSelf()
+    {
+        var f = new Fixture();
+
+        Assert.ThrowsAny<Exception>(() =>
+            f.Users.Update(f.Admin, f.Admin.Id, f.Admin.Domain, f.Admin.Username, f.Admin.DisplayName, UserRole.Viewer, true));
+    }
 }

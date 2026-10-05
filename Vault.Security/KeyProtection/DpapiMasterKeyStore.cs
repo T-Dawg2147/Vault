@@ -5,8 +5,10 @@ using Vault.Security.Encryption;
 namespace Vault.Security.KeyProtection;
 
 /// <summary>
-/// Protects the master key with DPAPI (CurrentUser scope), binding it to the
-/// current Windows user profile. The key file on disk contains only the
+/// Protects the master key with DPAPI (LocalMachine scope), binding it to the
+/// machine so that every Windows user who runs the shared installation can open
+/// it (per-user scope broke first-time users). Access to the key file itself must
+/// be restricted with NTFS permissions. The key file on disk contains only the
 /// DPAPI-protected blob — never the raw key.
 ///
 /// First-run behavior: generates a cryptographically random 32-byte master key,
@@ -34,7 +36,7 @@ public sealed class DpapiMasterKeyStore : IMasterKeyStore
                 "DPAPI key protection requires Windows. Use a platform-appropriate IMasterKeyStore for development.");
 
         if (File.Exists(_keyFilePath))
-            return Unprotect(File.ReadAllBytes(_keyFilePath));
+            return LoadExisting();
 
         var key = AesGcmEncryptionService.GenerateMasterKey();
         var protectedBlob = Protect(key);
@@ -51,23 +53,42 @@ public sealed class DpapiMasterKeyStore : IMasterKeyStore
         return key;
     }
 
+    private byte[] LoadExisting()
+    {
+        var blob = File.ReadAllBytes(_keyFilePath);
+        try
+        {
+            return ProtectedData.Unprotect(blob, OptionalEntropy, DataProtectionScope.LocalMachine);
+        }
+        catch (CryptographicException)
+        {
+            // Legacy key file protected with CurrentUser scope: migrate it to machine scope.
+        }
+
+        var key = Unprotect(blob, DataProtectionScope.CurrentUser);
+        var tempPath = _keyFilePath + ".tmp";
+        File.WriteAllBytes(tempPath, ProtectedData.Protect(key, OptionalEntropy, DataProtectionScope.LocalMachine));
+        File.Move(tempPath, _keyFilePath, overwrite: true);
+        return key;
+    }
+
     private static byte[] Protect(byte[] key)
     {
-        var protectedBlob = ProtectedData.Protect(key, OptionalEntropy, DataProtectionScope.CurrentUser);
+        var protectedBlob = ProtectedData.Protect(key, OptionalEntropy, DataProtectionScope.LocalMachine);
         CryptographicOperations.ZeroMemory(key);
         return protectedBlob;
     }
 
-    private static byte[] Unprotect(byte[] protectedBlob)
+    private static byte[] Unprotect(byte[] protectedBlob, DataProtectionScope scope)
     {
         try
         {
-            return ProtectedData.Unprotect(protectedBlob, OptionalEntropy, DataProtectionScope.CurrentUser);
+            return ProtectedData.Unprotect(protectedBlob, OptionalEntropy, scope);
         }
         catch (CryptographicException ex)
         {
             throw new InvalidOperationException(
-                "The master key could not be unprotected. It may belong to a different Windows user or machine.",
+                "The master key could not be unprotected. It may belong to a different machine.",
                 ex);
         }
     }

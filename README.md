@@ -4,7 +4,7 @@ A Windows-internal WPF desktop application that replaces plaintext CSV/TXT/XLS/X
 password files with an encrypted, role-based, audited credential store.
 
 > Internal use only. All credentials are encrypted at rest with AES-256-GCM;
-> the master key is protected by Windows DPAPI bound to the current user profile.
+> the master key is protected by Windows DPAPI bound to the machine (DPAPI LocalMachine scope) so every Windows user of the shared installation can start the app.
 
 ## Solution layout
 
@@ -30,8 +30,9 @@ password files with an encrypted, role-based, audited credential store.
   per vault at Viewer or Editor level by an admin.
 - **Encryption** — per-record AES-256-GCM (random nonce per write). Passwords and notes are
   only ever stored encrypted. The 32-byte master key is generated on first run and stored
-  only as a DPAPI-protected blob (`master.key`, CurrentUser scope) next to the database in
-  `%LOCALAPPDATA%\Vault`.
+  only as a DPAPI-protected blob (`master.key`, LocalMachine scope) next to the database in
+  the application's `Vault` data folder. Restrict that folder with NTFS permissions; legacy
+  CurrentUser-protected keys are migrated automatically by the user who created them.
 - **Audit** — logins (allowed/denied), credential views/reveals/creates/updates/deletes,
   vault and access changes, role changes, and imports are appended to the `AuditLog` table.
   Audit details never contain secrets.
