@@ -26,4 +26,7 @@ public class User
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+
+    /// <summary>False for admin pre-created users who have not signed in yet.</summary>
+    public bool HasSignedIn => !string.IsNullOrEmpty(WindowsSid);
 }

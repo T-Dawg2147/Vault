@@ -23,6 +23,9 @@ public partial class DashboardViewModel : ViewModelBase
     private int _rotationDueCount;
 
     [ObservableProperty]
+    private bool _hasNoAccess;
+
+    [ObservableProperty]
     private string _welcomeText = string.Empty;
 
     public DashboardViewModel(IVaultService vaultService, ICredentialService credentialService,
@@ -41,6 +44,7 @@ public partial class DashboardViewModel : ViewModelBase
 
         var vaults = _vaultService.GetAccessibleVaults(user);
         AccessibleVaultCount = vaults.Count;
+        HasNoAccess = vaults.Count == 0;
 
         var credentials = _credentialService.Search(user, string.Empty);
         AccessibleCredentialCount = credentials.Count;
