@@ -1,42 +1,40 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.App.Wpf\\Vault.App.Wpf.csproj": {}
+    "/home/runner/work/Vault/Vault/Vault.App.Wpf/Vault.App.Wpf.csproj": {}
   },
   "projects": {
-    "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.App.Wpf\\Vault.App.Wpf.csproj": {
+    "/home/runner/work/Vault/Vault/Vault.App.Wpf/Vault.App.Wpf.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.App.Wpf\\Vault.App.Wpf.csproj",
+        "projectUniqueName": "/home/runner/work/Vault/Vault/Vault.App.Wpf/Vault.App.Wpf.csproj",
         "projectName": "Vault",
-        "projectPath": "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.App.Wpf\\Vault.App.Wpf.csproj",
-        "packagesPath": "C:\\Users\\harryc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.App.Wpf\\obj\\",
+        "projectPath": "/home/runner/work/Vault/Vault/Vault.App.Wpf/Vault.App.Wpf.csproj",
+        "packagesPath": "/tmp/codeql-scratch-dd27a2fc47124167/dbs/csharp/working/packages",
+        "outputPath": "/home/runner/work/Vault/Vault/Vault.App.Wpf/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\harryc\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/runner/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0-windows"
         ],
         "sources": {
-          "C:\\NuGetLocal": {},
-          "C:\\Program Files (x86)\\Reference Assemblies\\Microsoft\\Framework\\.NETFramework\\v4.7.2": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net8.0-windows7.0": {
+          "net8.0-windows": {
+            "framework": "net8.0-windows7.0",
             "targetAlias": "net8.0-windows",
             "projectReferences": {
-              "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.Core\\Vault.Core.csproj": {
-                "projectPath": "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.Core\\Vault.Core.csproj"
+              "/home/runner/work/Vault/Vault/Vault.Core/Vault.Core.csproj": {
+                "projectPath": "/home/runner/work/Vault/Vault/Vault.Core/Vault.Core.csproj"
               },
-              "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.Infrastructure\\Vault.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.Infrastructure\\Vault.Infrastructure.csproj"
+              "/home/runner/work/Vault/Vault/Vault.Infrastructure/Vault.Infrastructure.csproj": {
+                "projectPath": "/home/runner/work/Vault/Vault/Vault.Infrastructure/Vault.Infrastructure.csproj"
               },
-              "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.Security\\Vault.Security.csproj": {
-                "projectPath": "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.Security\\Vault.Security.csproj"
+              "/home/runner/work/Vault/Vault/Vault.Security/Vault.Security.csproj": {
+                "projectPath": "/home/runner/work/Vault/Vault/Vault.Security/Vault.Security.csproj"
               }
             }
           }
@@ -51,10 +49,11 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.300"
+        "SdkAnalysisLevel": "10.0.400"
       },
       "frameworks": {
-        "net8.0-windows7.0": {
+        "net8.0-windows": {
+          "framework": "net8.0-windows7.0",
           "targetAlias": "net8.0-windows",
           "dependencies": {
             "CommunityToolkit.Mvvm": {
@@ -80,19 +79,19 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.28, 8.0.28]"
+              "version": "[8.0.31, 8.0.31]"
             },
             {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[8.0.28, 8.0.28]"
+              "name": "Microsoft.NETCore.App.Host.linux-x64",
+              "version": "[8.0.31, 8.0.31]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.28, 8.0.28]"
+              "version": "[8.0.31, 8.0.31]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.28, 8.0.28]"
+              "version": "[8.0.31, 8.0.31]"
             }
           ],
           "frameworkReferences": {
@@ -103,33 +102,31 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.401/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.Core\\Vault.Core.csproj": {
+    "/home/runner/work/Vault/Vault/Vault.Core/Vault.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.Core\\Vault.Core.csproj",
+        "projectUniqueName": "/home/runner/work/Vault/Vault/Vault.Core/Vault.Core.csproj",
         "projectName": "Vault.Core",
-        "projectPath": "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.Core\\Vault.Core.csproj",
-        "packagesPath": "C:\\Users\\harryc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.Core\\obj\\",
+        "projectPath": "/home/runner/work/Vault/Vault/Vault.Core/Vault.Core.csproj",
+        "packagesPath": "/tmp/codeql-scratch-dd27a2fc47124167/dbs/csharp/working/packages",
+        "outputPath": "/home/runner/work/Vault/Vault/Vault.Core/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\harryc\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/runner/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\NuGetLocal": {},
-          "C:\\Program Files (x86)\\Reference Assemblies\\Microsoft\\Framework\\.NETFramework\\v4.7.2": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
+            "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {}
           }
@@ -144,10 +141,11 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.300"
+        "SdkAnalysisLevel": "10.0.400"
       },
       "frameworks": {
         "net8.0": {
+          "framework": "net8.0",
           "targetAlias": "net8.0",
           "imports": [
             "net461",
@@ -163,15 +161,15 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.28, 8.0.28]"
+              "version": "[8.0.31, 8.0.31]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.28, 8.0.28]"
+              "version": "[8.0.31, 8.0.31]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.28, 8.0.28]"
+              "version": "[8.0.31, 8.0.31]"
             }
           ],
           "frameworkReferences": {
@@ -179,40 +177,38 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.401/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.Infrastructure\\Vault.Infrastructure.csproj": {
+    "/home/runner/work/Vault/Vault/Vault.Infrastructure/Vault.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.Infrastructure\\Vault.Infrastructure.csproj",
+        "projectUniqueName": "/home/runner/work/Vault/Vault/Vault.Infrastructure/Vault.Infrastructure.csproj",
         "projectName": "Vault.Infrastructure",
-        "projectPath": "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.Infrastructure\\Vault.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\harryc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.Infrastructure\\obj\\",
+        "projectPath": "/home/runner/work/Vault/Vault/Vault.Infrastructure/Vault.Infrastructure.csproj",
+        "packagesPath": "/tmp/codeql-scratch-dd27a2fc47124167/dbs/csharp/working/packages",
+        "outputPath": "/home/runner/work/Vault/Vault/Vault.Infrastructure/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\harryc\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/runner/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\NuGetLocal": {},
-          "C:\\Program Files (x86)\\Reference Assemblies\\Microsoft\\Framework\\.NETFramework\\v4.7.2": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
+            "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.Core\\Vault.Core.csproj": {
-                "projectPath": "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.Core\\Vault.Core.csproj"
+              "/home/runner/work/Vault/Vault/Vault.Core/Vault.Core.csproj": {
+                "projectPath": "/home/runner/work/Vault/Vault/Vault.Core/Vault.Core.csproj"
               },
-              "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.Security\\Vault.Security.csproj": {
-                "projectPath": "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.Security\\Vault.Security.csproj"
+              "/home/runner/work/Vault/Vault/Vault.Security/Vault.Security.csproj": {
+                "projectPath": "/home/runner/work/Vault/Vault/Vault.Security/Vault.Security.csproj"
               }
             }
           }
@@ -227,10 +223,11 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.300"
+        "SdkAnalysisLevel": "10.0.400"
       },
       "frameworks": {
         "net8.0": {
+          "framework": "net8.0",
           "targetAlias": "net8.0",
           "dependencies": {
             "ClosedXML": {
@@ -256,15 +253,15 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.28, 8.0.28]"
+              "version": "[8.0.31, 8.0.31]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.28, 8.0.28]"
+              "version": "[8.0.31, 8.0.31]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.28, 8.0.28]"
+              "version": "[8.0.31, 8.0.31]"
             }
           ],
           "frameworkReferences": {
@@ -272,37 +269,35 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.401/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.Security\\Vault.Security.csproj": {
+    "/home/runner/work/Vault/Vault/Vault.Security/Vault.Security.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.Security\\Vault.Security.csproj",
+        "projectUniqueName": "/home/runner/work/Vault/Vault/Vault.Security/Vault.Security.csproj",
         "projectName": "Vault.Security",
-        "projectPath": "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.Security\\Vault.Security.csproj",
-        "packagesPath": "C:\\Users\\harryc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.Security\\obj\\",
+        "projectPath": "/home/runner/work/Vault/Vault/Vault.Security/Vault.Security.csproj",
+        "packagesPath": "/tmp/codeql-scratch-dd27a2fc47124167/dbs/csharp/working/packages",
+        "outputPath": "/home/runner/work/Vault/Vault/Vault.Security/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\harryc\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/runner/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\NuGetLocal": {},
-          "C:\\Program Files (x86)\\Reference Assemblies\\Microsoft\\Framework\\.NETFramework\\v4.7.2": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
+            "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.Core\\Vault.Core.csproj": {
-                "projectPath": "C:\\Users\\harryc\\RiderProjects\\Archive\\Vault\\Vault.Core\\Vault.Core.csproj"
+              "/home/runner/work/Vault/Vault/Vault.Core/Vault.Core.csproj": {
+                "projectPath": "/home/runner/work/Vault/Vault/Vault.Core/Vault.Core.csproj"
               }
             }
           }
@@ -317,10 +312,11 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.300"
+        "SdkAnalysisLevel": "10.0.400"
       },
       "frameworks": {
         "net8.0": {
+          "framework": "net8.0",
           "targetAlias": "net8.0",
           "dependencies": {
             "System.Security.Cryptography.ProtectedData": {
@@ -342,15 +338,15 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.28, 8.0.28]"
+              "version": "[8.0.31, 8.0.31]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.28, 8.0.28]"
+              "version": "[8.0.31, 8.0.31]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.28, 8.0.28]"
+              "version": "[8.0.31, 8.0.31]"
             }
           ],
           "frameworkReferences": {
@@ -358,7 +354,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/10.0.401/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
