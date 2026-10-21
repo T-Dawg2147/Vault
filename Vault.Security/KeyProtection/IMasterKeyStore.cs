@@ -2,7 +2,7 @@ namespace Vault.Security.KeyProtection;
 
 /// <summary>
 /// Loads or creates the master encryption key, protected at rest by a
-/// Windows-bound mechanism (DPAPI on Windows). The unprotected key must never
+/// platform mechanism (DPAPI on Windows, Keychain on macOS, a 0600 file elsewhere). The unprotected key must never
 /// be written to disk, config, or logs.
 /// </summary>
 public interface IMasterKeyStore

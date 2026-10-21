@@ -1,0 +1,43 @@
+<UserControl x:Class="Vault.App.Views.VaultListView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Vaults" FontSize="22" FontWeight="Bold" Margin="0,0,0,12"/>
+
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Vaults}" SelectedItem="{Binding SelectedVault}"
+                  AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="2*"/>
+                <DataGridTextColumn Header="Updated" Binding="{Binding UpdatedAt, StringFormat=g}" Width="140"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Row="2" Margin="0,8,0,0">
+            <TextBlock Text="{Binding ErrorMessage}" Foreground="DarkRed" TextWrapping="Wrap"/>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Open credentials" Classes="primary" Command="{Binding OpenCredentialsCommand}"/>
+            </StackPanel>
+
+            <!-- Admin-only vault creation; the service layer re-checks admin rights. -->
+            <Border Margin="0,12,0,0" Padding="8" BorderThickness="1" BorderBrush="#DDD" CornerRadius="4"
+                    IsVisible="{Binding Session.IsAdmin}">
+                <StackPanel>
+                    <TextBlock Text="Create vault (admin)" FontWeight="SemiBold"/>
+                    <TextBlock Text="Name" Classes="formlabel"/>
+                    <TextBox Text="{Binding NewVaultName}"/>
+                    <TextBlock Text="Description" Classes="formlabel"/>
+                    <TextBox Text="{Binding NewVaultDescription}"/>
+                    <Button Content="Create" Classes="primary" Command="{Binding CreateVaultCommand}" HorizontalAlignment="Left"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </Grid>
+</UserControl>
