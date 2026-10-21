@@ -1,0 +1,47 @@
+<Window x:Class="Vault.App.MainWindow"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Vault.App.ViewModels"
+        xmlns:views="clr-namespace:Vault.App.Views"
+        Title="Vault — Internal Password Manager" Height="640" Width="1024"
+        WindowStartupLocation="CenterScreen"
+        MinWidth="720" MinHeight="480">
+    <Window.DataTemplates>
+        <DataTemplate DataType="vm:DashboardViewModel"><views:DashboardView/></DataTemplate>
+        <DataTemplate DataType="vm:VaultListViewModel"><views:VaultListView/></DataTemplate>
+        <DataTemplate DataType="vm:CredentialListViewModel"><views:CredentialListView/></DataTemplate>
+        <DataTemplate DataType="vm:CredentialEditViewModel"><views:CredentialEditView/></DataTemplate>
+        <DataTemplate DataType="vm:AdminUsersViewModel"><views:AdminUsersView/></DataTemplate>
+        <DataTemplate DataType="vm:AdminVaultAccessViewModel"><views:AdminVaultAccessView/></DataTemplate>
+        <DataTemplate DataType="vm:AuditLogViewModel"><views:AuditLogView/></DataTemplate>
+        <DataTemplate DataType="vm:ImportViewModel"><views:ImportView/></DataTemplate>
+    </Window.DataTemplates>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Role-aware navigation. Admin items are only visible to admins; the service layer re-checks every action. -->
+        <StackPanel Grid.Column="0" Background="#2D2D30">
+            <TextBlock Text="Vault" Foreground="White" FontSize="20" FontWeight="Bold" Margin="12,16"/>
+            <Button Content="Dashboard" Classes="primary" Command="{Binding NavigateCommand}" CommandParameter="Dashboard"/>
+            <Button Content="Vaults" Classes="primary" Command="{Binding NavigateCommand}" CommandParameter="Vaults"/>
+            <Button Content="Credentials" Classes="primary" Command="{Binding NavigateCommand}" CommandParameter="Credentials"/>
+            <Separator Margin="8"/>
+            <Button Content="Users" Classes="primary" Command="{Binding NavigateCommand}" CommandParameter="AdminUsers"
+                    IsVisible="{Binding Session.IsAdmin}"/>
+            <Button Content="Vault Access" Classes="primary" Command="{Binding NavigateCommand}" CommandParameter="AdminVaultAccess"
+                    IsVisible="{Binding Session.IsAdmin}"/>
+            <Button Content="Import" Classes="primary" Command="{Binding NavigateCommand}" CommandParameter="Import"
+                    IsVisible="{Binding Session.IsAdmin}"/>
+            <Button Content="Audit Log" Classes="primary" Command="{Binding NavigateCommand}" CommandParameter="AuditLog"
+                    IsVisible="{Binding Session.IsAdmin}"/>
+            <TextBlock Text="{Binding Session.CurrentUser.Username}" Foreground="#AAAAAA" Margin="12,24,12,4" TextWrapping="Wrap"/>
+            <TextBlock Text="{Binding Session.CurrentUser.Role}" Foreground="#AAAAAA" Margin="12,0" FontSize="11"/>
+        </StackPanel>
+
+        <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}" Margin="8"/>
+    </Grid>
+</Window>

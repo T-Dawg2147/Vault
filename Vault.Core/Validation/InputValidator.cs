@@ -20,6 +20,9 @@ public static class InputValidator
     private static readonly Regex SidPattern =
         new(@"^S-\d+(-\d+)+$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
+    private static readonly Regex PosixIdPattern =
+        new(@"^posix:[^\s\\/:]+@[^\s\\/:]+$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+
     private static readonly Regex AccountNamePattern =
         new(@"^[^\\/:*?""<>|]+$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
@@ -71,8 +74,8 @@ public static class InputValidator
 
     public static string RequiredSid(string? value)
     {
-        var sid = RequiredText(value, "Windows SID", 256);
-        if (!SidPattern.IsMatch(sid))
+        var sid = RequiredText(value, "Identity identifier (SID)", 256);
+        if (!SidPattern.IsMatch(sid) && !PosixIdPattern.IsMatch(sid))
             throw new ValidationException("Windows SID has an invalid format.");
         return sid;
     }
