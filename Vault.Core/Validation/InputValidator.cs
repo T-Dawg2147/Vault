@@ -76,7 +76,7 @@ public static class InputValidator
     {
         var sid = RequiredText(value, "Identity identifier (SID)", 256);
         if (!SidPattern.IsMatch(sid) && !PosixIdPattern.IsMatch(sid))
-            throw new ValidationException("Windows SID has an invalid format.");
+            throw new ValidationException("Identity identifier must be a Windows SID (S-1-...) or posix:user@machine.");
         return sid;
     }
 

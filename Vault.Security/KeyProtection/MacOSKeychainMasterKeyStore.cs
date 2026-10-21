@@ -29,14 +29,15 @@ internal sealed class SecurityCliRunner : IKeychainCommandRunner
 
         using var process = Process.Start(info)
             ?? throw new InvalidOperationException("Could not start the macOS security tool.");
-        var output = process.StandardOutput.ReadToEnd();
-        process.StandardError.ReadToEnd();
+        var output = process.StandardOutput.ReadToEndAsync();
+        var error = process.StandardError.ReadToEndAsync();
         if (!process.WaitForExit(10_000))
         {
             process.Kill();
             throw new TimeoutException("The macOS security tool timed out.");
         }
-        return new KeychainCommandResult(process.ExitCode, output);
+        Task.WaitAll(output, error);
+        return new KeychainCommandResult(process.ExitCode, output.Result);
     }
 }
 

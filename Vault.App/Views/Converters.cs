@@ -43,8 +43,8 @@ public sealed class StringListJoinConverter : IValueConverter
 public sealed class DateTimeToOffsetConverter : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
-        => value is DateTime dt ? new DateTimeOffset(dt) : null;
+        => value is DateTime dt ? new DateTimeOffset(DateTime.SpecifyKind(dt, DateTimeKind.Unspecified)) : null;
 
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
-        => value is DateTimeOffset dto ? dto.DateTime : null;
+        => value is DateTimeOffset dto ? dto.Date : null;
 }
