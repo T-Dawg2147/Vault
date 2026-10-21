@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "ZPGo17zvQcE=",
+  "dgSpecHash": "Md2Up1zZl7o=",
   "success": true,
   "projectFilePath": "/home/runner/work/Vault/Vault/Vault.Core/Vault.Core.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/tmp/codeql-scratch-dd27a2fc47124167/dbs/csharp/working/packages/microsoft.netcore.app.ref/8.0.31/microsoft.netcore.app.ref.8.0.31.nupkg.sha512",
+    "/tmp/codeql-scratch-dd27a2fc47124167/dbs/csharp/working/packages/microsoft.windowsdesktop.app.ref/8.0.31/microsoft.windowsdesktop.app.ref.8.0.31.nupkg.sha512",
+    "/tmp/codeql-scratch-dd27a2fc47124167/dbs/csharp/working/packages/microsoft.aspnetcore.app.ref/8.0.31/microsoft.aspnetcore.app.ref.8.0.31.nupkg.sha512"
+  ],
   "logs": []
 }

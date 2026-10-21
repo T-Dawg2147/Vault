@@ -10,7 +10,7 @@
         "projectUniqueName": "/home/runner/work/Vault/Vault/Vault.Core/Vault.Core.csproj",
         "projectName": "Vault.Core",
         "projectPath": "/home/runner/work/Vault/Vault/Vault.Core/Vault.Core.csproj",
-        "packagesPath": "/home/runner/.nuget/packages/",
+        "packagesPath": "/tmp/codeql-scratch-dd27a2fc47124167/dbs/csharp/working/packages",
         "outputPath": "/home/runner/work/Vault/Vault/Vault.Core/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
@@ -56,6 +56,20 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.31, 8.0.31]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.31, 8.0.31]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.31, 8.0.31]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
@@ -71,7 +85,7 @@
         "projectUniqueName": "/home/runner/work/Vault/Vault/Vault.Infrastructure/Vault.Infrastructure.csproj",
         "projectName": "Vault.Infrastructure",
         "projectPath": "/home/runner/work/Vault/Vault/Vault.Infrastructure/Vault.Infrastructure.csproj",
-        "packagesPath": "/home/runner/.nuget/packages/",
+        "packagesPath": "/tmp/codeql-scratch-dd27a2fc47124167/dbs/csharp/working/packages",
         "outputPath": "/home/runner/work/Vault/Vault/Vault.Infrastructure/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
@@ -134,6 +148,20 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.31, 8.0.31]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.31, 8.0.31]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.31, 8.0.31]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
@@ -149,7 +177,7 @@
         "projectUniqueName": "/home/runner/work/Vault/Vault/Vault.Security/Vault.Security.csproj",
         "projectName": "Vault.Security",
         "projectPath": "/home/runner/work/Vault/Vault/Vault.Security/Vault.Security.csproj",
-        "packagesPath": "/home/runner/.nuget/packages/",
+        "packagesPath": "/tmp/codeql-scratch-dd27a2fc47124167/dbs/csharp/working/packages",
         "outputPath": "/home/runner/work/Vault/Vault/Vault.Security/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
@@ -205,6 +233,20 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.31, 8.0.31]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.31, 8.0.31]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.31, 8.0.31]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
@@ -220,7 +262,7 @@
         "projectUniqueName": "/home/runner/work/Vault/Vault/Vault.Tests/Vault.Tests.csproj",
         "projectName": "Vault.Tests",
         "projectPath": "/home/runner/work/Vault/Vault/Vault.Tests/Vault.Tests.csproj",
-        "packagesPath": "/home/runner/.nuget/packages/",
+        "packagesPath": "/tmp/codeql-scratch-dd27a2fc47124167/dbs/csharp/working/packages",
         "outputPath": "/home/runner/work/Vault/Vault/Vault.Tests/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
@@ -294,6 +336,20 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.31, 8.0.31]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.31, 8.0.31]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.31, 8.0.31]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
