@@ -74,9 +74,7 @@ public sealed class DpapiMasterKeyStore : IMasterKeyStore
 
     private static byte[] Protect(byte[] key)
     {
-        var protectedBlob = ProtectedData.Protect(key, OptionalEntropy, DataProtectionScope.LocalMachine);
-        CryptographicOperations.ZeroMemory(key);
-        return protectedBlob;
+        return ProtectedData.Protect(key, OptionalEntropy, DataProtectionScope.LocalMachine);
     }
 
     private static byte[] Unprotect(byte[] protectedBlob, DataProtectionScope scope)
