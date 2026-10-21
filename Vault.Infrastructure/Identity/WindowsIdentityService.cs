@@ -7,12 +7,12 @@ namespace Vault.Infrastructure.Identity;
 /// <summary>
 /// Reads the current Windows identity via <see cref="WindowsIdentity.GetCurrent()"/>.
 /// The SID is the stable anchor used to map to an application user record.
-/// Only usable on Windows; the application targets a Windows desktop environment.
+/// Only usable on Windows; other platforms use <see cref="PosixIdentityService"/>.
 /// </summary>
-public sealed class WindowsIdentityService : IWindowsIdentityService
+[System.Runtime.Versioning.SupportedOSPlatform("windows")]
+public sealed class WindowsIdentityService : ICurrentUserIdentityService
 {
-    [System.Runtime.Versioning.SupportedOSPlatform("windows")]
-    public WindowsIdentityInfo GetCurrentIdentity()
+    public PlatformIdentityInfo GetCurrentIdentity()
     {
         using var identity = WindowsIdentity.GetCurrent();
 
@@ -34,7 +34,7 @@ public sealed class WindowsIdentityService : IWindowsIdentityService
             // Some machine-local or service accounts cannot be translated; fall back to the logon name.
         }
 
-        return new WindowsIdentityInfo
+        return new PlatformIdentityInfo
         {
             Sid = sid,
             Domain = domain,

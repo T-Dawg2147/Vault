@@ -9,13 +9,13 @@ namespace Vault.Tests.Infrastructure;
 
 public class UserServiceTests
 {
-    private sealed class FakeIdentity : IWindowsIdentityService
+    private sealed class FakeIdentity : ICurrentUserIdentityService
     {
-        public WindowsIdentityInfo Current { get; set; } = new()
+        public PlatformIdentityInfo Current { get; set; } = new()
         {
             Sid = "S-1-5-21-1-2-3-1001", Domain = "CORP", Username = "alice", DisplayName = "Alice"
         };
-        public WindowsIdentityInfo GetCurrentIdentity() => Current;
+        public PlatformIdentityInfo GetCurrentIdentity() => Current;
     }
 
     private sealed class Fixture

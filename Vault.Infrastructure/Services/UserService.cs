@@ -12,13 +12,13 @@ namespace Vault.Infrastructure.Services;
 public sealed class UserService : IUserService
 {
     private readonly IRepository _repository;
-    private readonly IWindowsIdentityService _identityService;
+    private readonly ICurrentUserIdentityService _identityService;
     private readonly IAuthorizationService _authorization;
     private readonly IAuditService _audit;
 
     public UserService(
         IRepository repository,
-        IWindowsIdentityService identityService,
+        ICurrentUserIdentityService identityService,
         IAuthorizationService authorization,
         IAuditService audit)
     {
@@ -73,7 +73,7 @@ public sealed class UserService : IUserService
     /// Authorization is deny-by-default, so the new user cannot see any credentials until
     /// an admin grants vault access.
     /// </summary>
-    private User? AutoRegister(WindowsIdentityInfo identity)
+    private User? AutoRegister(PlatformIdentityInfo identity)
     {
         if (string.IsNullOrWhiteSpace(identity.Username) || string.IsNullOrWhiteSpace(identity.Sid))
             return null;

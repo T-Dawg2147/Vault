@@ -1,4 +1,3 @@
-using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using Vault.Security.Encryption;
 
@@ -14,6 +13,7 @@ namespace Vault.Security.KeyProtection;
 /// First-run behavior: generates a cryptographically random 32-byte master key,
 /// protects it with DPAPI, and writes the blob next to the application database.
 /// </summary>
+[System.Runtime.Versioning.SupportedOSPlatform("windows")]
 public sealed class DpapiMasterKeyStore : IMasterKeyStore
 {
     private static readonly byte[] OptionalEntropy =
@@ -31,10 +31,6 @@ public sealed class DpapiMasterKeyStore : IMasterKeyStore
 
     public byte[] GetOrCreateMasterKey()
     {
-        if (!OperatingSystem.IsWindows())
-            throw new PlatformNotSupportedException(
-                "DPAPI key protection requires Windows. Use a platform-appropriate IMasterKeyStore for development.");
-
         if (File.Exists(_keyFilePath))
             return LoadExisting();
 

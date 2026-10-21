@@ -4,11 +4,11 @@ using Vault.Core.Models;
 namespace Vault.Core.Interfaces;
 
 /// <summary>
-/// Provides information about the currently logged-on Windows user.
+/// Provides information about the currently logged-on operating system user.
 /// </summary>
-public interface IWindowsIdentityService
+public interface ICurrentUserIdentityService
 {
-    WindowsIdentityInfo GetCurrentIdentity();
+    PlatformIdentityInfo GetCurrentIdentity();
 }
 
 /// <summary>

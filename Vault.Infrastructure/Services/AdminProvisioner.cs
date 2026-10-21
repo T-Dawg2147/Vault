@@ -13,7 +13,7 @@ public static class AdminProvisioner
 {
     public static User EnsureInitialAdmin(
         IRepository repository,
-        IWindowsIdentityService identityService,
+        ICurrentUserIdentityService identityService,
         IAuditService audit)
     {
         if (repository.CountUsers() > 0)
